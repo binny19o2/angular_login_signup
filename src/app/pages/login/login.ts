@@ -28,8 +28,9 @@ export class LoginComponent {
   }
   
   onLogin(){
-    this.userService.onLogin(this.loginObj).subscribe((res:UserRegister)=>{
+    this.userService.onLogin(this.loginObj).subscribe((res:any)=>{
       alert("User Found");
+      localStorage.setItem('logData',JSON.stringify(res.data));
       this.router.navigate(['/dashboard']);
     },error=>{
       alert("invalid username or password");
