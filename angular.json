@@ -75,11 +75,15 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "58ea97dc-51db-460a-aef5-6314d7c7db78"
   }
 }

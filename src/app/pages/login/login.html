@@ -1,0 +1,71 @@
+<div class="container" [class.right-panel-active]="isSignupMode">
+  <!-- Sign Up Form -->
+  <div class="form-container sign-up-container">
+    <form #signUpForm="ngForm">
+      <h1>Create Account</h1>
+      <input type="text" 
+             name="fullName" 
+             #name="ngModel" 
+             required 
+             [(ngModel)]="registerObj.fullName" 
+             (blur)="name.control.markAsTouched()"
+             placeholder="Name" />
+      <div class="text-danger">
+        @if(name.touched && name.errors?.['required']){
+          <span>this is required</span>
+        }
+      </div>
+      <input type="email" 
+             name="emailId" 
+             #email="ngModel" 
+             required 
+             [(ngModel)]="registerObj.emailId"
+             (blur)="email.control.markAsTouched()" 
+             placeholder="Email" />
+      <div class="text-danger">
+        @if(email.touched && email.errors?.['required']){
+          <span>this is required</span>
+        }
+      </div>
+      <input type="password" 
+             name="password" 
+             #pass="ngModel" 
+             required 
+             [(ngModel)]="registerObj.password"
+             (blur)="pass.control.markAsTouched()"
+             placeholder="Password" />
+      <div class="text-danger">
+        @if(pass.touched && pass.errors?.['required']){
+          <span>this is required</span>
+        }
+      </div>
+      <button type="button" (click)="onRegister()" [disabled]="signUpForm.invalid">Sign Up</button>
+    </form>
+</div>
+
+  <!-- Sign In Form -->
+  <div class="form-container sign-in-container">
+    <form>
+      <h1>Sign in</h1>
+      <input type="email" name="email" [(ngModel)]="loginObj.emailId" placeholder="Email" />
+      <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" />
+      <button type="button" (click)="onLogin()">Sign In</button>
+    </form>
+  </div>
+
+  <!-- Overlay Section -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To stay connected with us please login with your personal info</p>
+        <button class="ghost" (click)="isSignupMode = false">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your details and start your journey with us</p>
+        <button class="ghost" (click)="isSignupMode = true">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
