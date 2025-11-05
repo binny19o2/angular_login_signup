@@ -1,5 +1,6 @@
 import { Component, inject, Inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-layout',
@@ -9,9 +10,10 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class Layout {
   router = inject(Router);
-
-  onLogOff(){
-      localStorage.removeItem('logData');
-       this.router.navigate(['/login']);
+  authService = inject(AuthService);
+  async onLogOff() {
+    // localStorage.removeItem('logData');
+    await this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
