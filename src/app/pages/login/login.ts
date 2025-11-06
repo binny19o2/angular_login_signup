@@ -99,6 +99,17 @@ export class LoginComponent {
     }
   }
 
+ async onForgotPass(){
+    try {
+      await this.authService.forgotPassword(
+        this.loginObj.emailId
+      );
+      alert("Password reset link sent");
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   
 }
 

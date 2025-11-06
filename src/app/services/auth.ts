@@ -6,7 +6,8 @@ import {
   signOut,
   user,
   User,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
@@ -66,6 +67,18 @@ export class AuthService {
       await signOut(this.auth);
     } catch (error: any) {
       throw this.handleError(error);
+    }
+  }
+
+  async forgotPassword(emailId : string){
+    try{
+      await sendPasswordResetEmail(
+        this.auth,
+        emailId
+      )
+    }
+    catch(error:any){
+      alert(error);
     }
   }
 
