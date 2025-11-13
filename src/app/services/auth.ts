@@ -20,9 +20,9 @@ export class AuthService {
   currentUser: User | null = null;
 
   constructor() {
-    this.user$.subscribe(user => {
-      this.currentUser = user;
-    });
+    // this.user$.subscribe(user => {
+    //   this.currentUser = user;
+    // });
   }
 
   // Register new user

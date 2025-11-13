@@ -1,2 +1,122 @@
-<p>dashboard works!</p>
-<!-- <router-outlet></router-outlet> -->
+<div class="container ">
+  <h2 class="text-center ">🎓 Student Dashboard</h2>
+
+  <div class="row">
+    <!-- 🧾 Left Side: Add / Update Form -->
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h5 class="mb-0">Add New Student</h5>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="addStudent()" #studentForm="ngForm">
+            <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                [(ngModel)]="firstName"
+                name="firstName"
+                class="form-control"
+                placeholder="Enter first name"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                [(ngModel)]="lastName"
+                name="lastName"
+                class="form-control"
+                placeholder="Enter last name"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="email"
+                name="email"
+                class="form-control"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile</label>
+              <input
+                type="text"
+                id="mobile"
+                [(ngModel)]="mobile"
+                name="mobile"
+                class="form-control"
+                placeholder="Enter mobile number"
+                required
+              />
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success">Add Student</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📋 Right Side: Student Table -->
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white text-center">
+          <h5 class="mb-0">All Students</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover mb-0" *ngIf="studentsList.length > 0; else noData">
+  <thead class="table-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of studentsList">
+      <td>{{ s.firstName }}</td>
+      <td>{{ s.lastName }}</td>
+      <td>{{ s.email }}</td>
+      <td>{{ s.mobile }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning me-2" (click)="updStudent(s)">
+          Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="delStudent(s)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <div class="p-3 text-center text-muted">No students found.</div>
+</ng-template>
+
+
+            <ng-template #noData>
+              <div class="p-3 text-center text-muted">No students found.</div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
